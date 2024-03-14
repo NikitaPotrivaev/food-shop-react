@@ -1,0 +1,35 @@
+.list {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    width: 50%;
+    margin: auto;
+}
+
+.list__orders {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.list__img {
+    width: 38px;
+    height: 38px;
+}
+
+.list__link {
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    transition: all .2s linear;
+}
+
+.list__link:hover {
+    opacity: .7;
+}
+
+.list__text {
+    color: black;
+}

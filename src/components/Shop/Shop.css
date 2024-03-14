@@ -1,0 +1,28 @@
+.shop {
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    width: 50%;
+}
+
+.shop__logo {
+    height: 92px;
+    width: 92px;
+}
+
+.shop__title {
+    font-size: 3.5rem;
+    font-weight: 400;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.shop__text {
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
