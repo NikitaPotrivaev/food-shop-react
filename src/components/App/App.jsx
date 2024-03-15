@@ -2,8 +2,9 @@ import './App.css'
 import { Main } from '../Main/Main'
 import { Profile } from '../Profile/Profile';
 import { NotFound } from '../NotFound/NotFound';
-import { Signup } from '../Signup/Signup';
 import { Signin } from '../Signin/Signin';
+import { Signup } from '../Signup/Sinup';
+import { Data } from '../Data/Data';
 import { CurrentUserContext } from '../../context/CurrentUserContext'
 import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
@@ -26,6 +27,9 @@ function App() {
         />
         <Route path='/signin'
           element = {<Signin />}
+        />
+        <Route path='/data'
+          element = {<Data/>}
         />
         <Route path='*'
           element = {<NotFound />}

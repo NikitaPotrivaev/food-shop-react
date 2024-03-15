@@ -1,0 +1,120 @@
+.data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 200px auto 70px;
+}
+
+.data__title {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-top: 43px;
+}
+
+.data__form {
+    display: flex;
+    flex-direction: column;
+    margin: 40px auto 16px;
+    align-items: center;
+    width: 410px;
+}
+
+.data__input-container {
+    display: flex;
+    color: rgb(116, 113, 111);
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.2;
+    width: 100%;
+    border-bottom: solid 1px rgb(116, 113, 111);
+}
+
+.data__input-container:last-of-type {
+    padding: 0;
+}
+
+.data__input-element {
+    padding-top: 10px;
+    padding-bottom: 5px;
+    border: none;
+    background-color: transparent;
+    color: black;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 1.2;
+    width: 90%;
+    outline: none;
+}
+
+.data__input-element-error {
+    margin-top: 6px;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 1.2;
+    min-height: 17px;
+    color: #ee3465;
+    display: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.data__input-element-error_active {
+    display: flex;
+}
+
+.data__button {
+    border: solid 1px #eb5a1e;
+    margin: 69px auto 16px;
+    width: 100%;
+    padding: 0;
+    height: 45px;
+    box-sizing: border-box;
+    background-color: #eb5a1e;
+    color: #f8f8f8;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 100%;
+    transition: all 0.2s linear;
+    cursor: pointer;
+}
+
+.data__button-inactive {
+    background-color: transparent;
+    color: #eb5a1e;
+}
+
+@media screen and (max-width: 768px) {
+    .data {
+        margin: 236px auto 269px;
+    }
+
+    .data__form {
+        margin: 96px auto 16px;
+    }
+
+    .data__button {
+        margin-top: 210px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .data {
+        margin: 70px auto 40px;
+    }
+
+    .data__form {
+        margin: 80px auto 16px;
+        width: 100%;
+    }
+
+    .data__button {
+        margin-top: 100px;
+        font-size: 12px;
+    }
+}

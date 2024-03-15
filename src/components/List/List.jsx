@@ -8,14 +8,16 @@ export function List() {
     return(
         <section className='list'>
             <div className='list__orders'>
-                <Link className='list__link' to='/signup'>
+                <Link className='list__link' to='/signin'>
                     <img src={cart} className='list__img'/>
                     <p className='list__text'>Корзина</p>
                 </Link>
             </div>
             <div className='list__orders'>
-                <img src={data} className='list__img'/>
-                <p className='list__text'>Мои данные</p>
+                <Link className='list__link' to='/data'>
+                    <img src={data} className='list__img'/>
+                    <p className='list__text'>Мои данные</p>
+                </Link>
             </div>
             <div className='list__orders'>
                 <img src={exit} className='list__img'/>
