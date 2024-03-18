@@ -10,3 +10,8 @@
     line-height: 1;
     margin: 43px auto 40px auto;
 }
+
+.profile__empty {
+    display: flex;
+    flex: 1;
+}

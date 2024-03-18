@@ -1,16 +1,16 @@
 export const cardInfo = [
     {
         id: 1,
-        link: 'https://static.pizzasushiwok.ru/images/menu_new/1462-1300.jpg',
+        link: 'https://glavsushi.ru/wp-content/uploads/2019/09/kalif_tempura_corr.jpg',
         name: 'Калифония темпура',
-        qty: '6 шт.',
-        weight: '205г',
+        qty: '8 шт.',
+        weight: '240г',
         price: '250 ₽'
     },
 
     {
         id: 2,
-        link: 'https://static.pizzasushiwok.ru/images/menu_new/184-1300.jpg',
+        link: 'https://imgproxy.sbermarket.ru/imgproxy/width-auto/czM6Ly9jb250ZW50LWltYWdlcy1wcm9kL3Byb2R1Y3RzLzI4NDM3NjE1L29yaWdpbmFsLzEvMjAyMy0xMS0yM1QxMyUzQTEzJTNBNTIuNjkxNzYwJTJCMDAlM0EwMC8yODQzNzYxNV8xLmpwZw==.jpg',
         name: 'Калифония хит ролл',
         qty: '6 шт.',
         weight: '180г',
@@ -19,7 +19,7 @@ export const cardInfo = [
 
     {
         id: 3,
-        link: 'https://perm.appetitfood.ru/storage/products/.thumbs/preview380x293_fila-layt-s-krevetkoy-sayt.jpg',
+        link: 'https://lucky-king.ru/media/modules/catalog/7e8d06e3-9c08-40d4-9f76-8c8fe64f463c.jpg',
         name: 'Филадельфия',
         qty: '6 шт.',
         weight: '230г',
@@ -28,18 +28,18 @@ export const cardInfo = [
 
     {
         id: 4,
-        link: 'https://static.pizzasushiwok.ru/images/menu_new/825-1300.jpg',
+        link: 'https://house-pizza.ru/wp-content/uploads/2019/02/KALIFORNIYa-Myaso-kraba-avokado-ogurec-ikra-tobiko-majonez-290r..jpg',
         name: 'Запеченный ролл "Калифония"',
-        qty: '6 шт.',
+        qty: '8 шт.',
         weight: '182г',
         price: '369 ₽'
     },
 
     {
         id: 5,
-        link: 'https://i0.wp.com/vichuga.sam-set.ru/wp-content/uploads/2022/03/tempura-krevetka-1.jpg?fit=520%2C347&ssl=1',
+        link: 'https://japanmoose.ru/image/catalog/products/roll/Roly/krevetka-tempura.jpg',
         name: 'Креветка темпура ролл',
-        qty: '8 шт.',
+        qty: '6 шт.',
         weight: '205г',
         price: '389 ₽'
     },

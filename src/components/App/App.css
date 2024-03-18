@@ -9,4 +9,5 @@ body {
     flex-direction: column;
     max-width: 1240px;
     margin: auto;
+    height: 100vh;
 }
