@@ -5,15 +5,17 @@ import { List } from '../List/List';
 import { BackButton } from '../BackButton/Backbutton';
 import { Footer } from '../Footer/Footer';
 
-export function Profile() {
+export function Profile({ onEditAvatar }) {
     return(
         <>  
             <BackButton />
             <Shop />
-            <Avatar />
-                <div className="profile__info">
-                    <p className="profile__info-name">Никитос Потриваев</p>
-                </div>
+            <Avatar 
+                onEditAvatar = {onEditAvatar}
+            />
+            <div className="profile__info">
+                <p className="profile__info-name">Никитос Потриваев</p>
+            </div>
             <List />
                 <div className='profile__empty'></div>
             <Footer />

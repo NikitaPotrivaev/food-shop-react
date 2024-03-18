@@ -5,7 +5,7 @@ import telegram from '../../images/telegram.svg'
 export function Footer() {
     return (
         <footer className='footer'>
-            <p className='footer__title'>Доставка пайки.Быстро и вкусно</p>
+            <p className='footer__title'>Доставка пайки.Оперативно и вкусно</p>
             <div className='footer__container'>
                 <div className='footer__copyright'>
                     <p className='footer__copyright-text'>&copy; ООО «Доставка Пайки»</p>

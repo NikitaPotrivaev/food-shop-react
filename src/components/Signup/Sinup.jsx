@@ -12,7 +12,7 @@ export function Signup() {
             isDisabled={!isValid || ''}
             title='Добро пожаловать!'
             text='Зарегистрироваться'
-            linkCaption='Уже не зарегистрированы?'
+            linkCaption='Уже зарегистрированы?'
             linkText='Войти'
             path='/signin'
         >
@@ -31,6 +31,11 @@ export function Signup() {
                 <input name='password' className='input__element' type='password' autoComplete='new-password' value={values.password || '' } onChange = { handleChange } minLength="6" maxLength="40" required />
                     <span className='input__error input__error_active'>{errors.password || '' }</span>
             </div>
+            <div className='input'>
+                <p className='input__info'>Номер Телефона</p>
+                <input name='phone' pattern="^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$" className='input__element' type='tel' autoComplete='new-phone' value={values.phone || '' } onChange = { handleChange } minLength="11" maxLength="12" required />
+                    <span className='input__error input__error_active'>{errors.phone || '' }</span>
+            </div>           
         </Form>
     </>
     )

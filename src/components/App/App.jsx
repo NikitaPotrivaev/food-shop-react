@@ -9,14 +9,21 @@ import { CurrentUserContext } from '../../context/CurrentUserContext'
 import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { ImagePopup } from '../ImagePopup/ImagePopup';
+import { EditAvatarPopup } from '../EditAvatarPopup/EditAvatarPopup';
 
 function App() {
   const [currentUser, setCurrentUser] = useState({})
   const [isImagePopup, setImagePopup] = useState(false)
   const [selectedCard, setSelectedCard] = useState({})
+  const [isEditAvatarPopup, setEditAvatarPopup] = useState(false)
 
   function closeAllPopups() {
+    setEditAvatarPopup(false)
     setImagePopup(false)
+  }
+
+  function handleEditAvatarClick() {
+    setEditAvatarPopup(true)
   }
 
   function handleCardClick(card) {
@@ -30,10 +37,13 @@ function App() {
         <Routes>
         <Route path='/'
             element = { <Main 
-            onCardClick = { handleCardClick } />}
+            onCardClick = { handleCardClick }
+          />}
           />
           <Route path='/profile'
-            element = {<Profile />}
+            element = {<Profile 
+              onEditAvatar = { handleEditAvatarClick }
+          />}
           />
           <Route path='/signup'
             element = {<Signup />}
@@ -48,6 +58,10 @@ function App() {
             element = {<NotFound />}
           />
         </Routes>
+        <EditAvatarPopup 
+          isOpen = { isEditAvatarPopup }
+          onClose = { closeAllPopups }
+        />
         <ImagePopup
           isOpen = { isImagePopup }
           onClose = { closeAllPopups }
