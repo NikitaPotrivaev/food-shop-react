@@ -2,12 +2,14 @@ import { Form } from '../Form/Form';
 import { BackButton } from '../BackButton/Backbutton';
 import { useForm } from '../../hooks/useForm';
 
-export function Signup() {
+export function Signup({ isOpen, onClose }) {
     const { values, handleChange, errors, isValid } = useForm()
     return(
         <>
         <BackButton />
         <Form
+            isOpen = { isOpen }
+            onClose = { onClose }
             isValid={isValid}
             isDisabled={!isValid || ''}
             title='Добро пожаловать!'
@@ -18,7 +20,7 @@ export function Signup() {
         >
             <div className='input'>
                 <p className='input__info'>Имя</p>
-                <input name='name' className='input__element' type='text' value={values.name || '' } onChange = { handleChange } minLength="2" maxLength="40" required />
+                <input name='name' className='input__element' type='text' value={values.name || '' } onChange = { handleChange } minLength="2" maxLength="30" required />
                     <span className='input__error input__error_active'>{errors.name || '' }</span>
             </div>
             <div className='input'>

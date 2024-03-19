@@ -3,7 +3,7 @@ import { Main } from '../Main/Main'
 import { Profile } from '../Profile/Profile';
 import { NotFound } from '../NotFound/NotFound';
 import { Signin } from '../Signin/Signin';
-import { Signup } from '../Signup/Sinup';
+import { Signup } from '../Signup/Signup';
 import { Data } from '../Data/Data';
 import { CurrentUserContext } from '../../context/CurrentUserContext'
 import { useEffect, useState } from 'react';
@@ -35,7 +35,7 @@ function App() {
     <CurrentUserContext.Provider value = { currentUser }>
       <div className='app'>
         <Routes>
-        <Route path='/'
+          <Route path='/'
             element = { <Main 
             onCardClick = { handleCardClick }
           />}

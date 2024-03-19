@@ -9,7 +9,7 @@ export function Main(props) {
     return(
         <>
             <main>
-                <Header />
+                <Header onSignPopupClick = {props.onSignPopupClick}/>
                 <SearchForm />
                 <ul className="card">
                     {cardInfo.map((card) => (
