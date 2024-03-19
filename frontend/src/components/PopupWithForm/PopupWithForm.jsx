@@ -27,7 +27,7 @@ export function PopupWithForm(props) {
       <div className="popup__container">
         <button className="popup__close" type="button" onClick={ props.onClose } aria-label="Закрыть"></button>
         <h2 className="popup__title ">{ props.title }</h2>
-        <form className="popup__form" name={ props.name }>
+        <form className="popup__form" name={ props.name } onSubmit={ props.onSubmit }>
           { props.children }
           <button type="submit" disabled={ props.isDisabled } className={`popup__submit ${!props.isValid ? 'popup__submit_inactive' : ''}`} aria-label="save">{ props.buttonText }</button>
         </form>

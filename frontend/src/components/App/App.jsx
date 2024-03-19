@@ -89,6 +89,15 @@ function App() {
     .catch(err => {console.log(`Ошибка при регистрации пользователя ${err}`)})
   }
 
+  function handleUpdateAvatar(url) {
+    api.setUserAvatar(url)
+      .then((res) => {
+        setCurrentUser(res)
+        closeAllPopups()
+      })
+      .catch(err => console.log(`Ошибка при редактировании аватара, ${err}`))
+  }
+
   return (
     <CurrentUserContext.Provider value = { currentUser }>
       <div className='app'>
@@ -131,6 +140,7 @@ function App() {
         <EditAvatarPopup 
           isOpen = { isEditAvatarPopup }
           onClose = { closeAllPopups }
+          onUpdateAvatar = { handleUpdateAvatar }
         />
         <ImagePopup
           isOpen = { isImagePopup }

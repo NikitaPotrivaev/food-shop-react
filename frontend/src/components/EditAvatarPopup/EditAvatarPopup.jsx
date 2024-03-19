@@ -15,10 +15,16 @@ export function EditAvatarPopup(props) {
         resetForm()
     }, [resetForm, props.isOpen])
 
+    function handleSubmit(e) {
+        e.preventDefault();
+        props.onUpdateAvatar({ avatar: ref.current.value })
+    }
+
     return(
     <PopupWithForm
         isOpen = { props.isOpen }
         onClose = { props.onClose }
+        onSubmit = { handleSubmit }
         isValid = { isValid }
         isDisabled = { !isValid || props.isLoading }
         title = 'Обновить аватар'
