@@ -2,14 +2,20 @@ import { Form } from '../Form/Form';
 import { BackButton } from '../BackButton/Backbutton';
 import { useForm } from '../../hooks/useForm';
 
-export function Signup({ isOpen, onClose }) {
+export function Signup({ onRegister }) {
+
     const { values, handleChange, errors, isValid } = useForm()
+
+    function handleSubmit(e) {
+        e.preventDefault()
+        onRegister(values["name"], values["email"], values["password"], values["phone"])
+    }
+
     return(
         <>
         <BackButton />
         <Form
-            isOpen = { isOpen }
-            onClose = { onClose }
+            onSubmit={handleSubmit}
             isValid={isValid}
             isDisabled={!isValid || ''}
             title='Добро пожаловать!'

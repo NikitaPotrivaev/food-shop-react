@@ -2,14 +2,14 @@ import './Form.css'
 import { Link } from 'react-router-dom'
 import { Logo } from '../Logo/Logo'
 
-export function Form({ children, title, text, linkCaption, linkText, path, isValid, isDisabled }) {
+export function Form({ children, title, text, linkCaption, linkText, path, isValid, isDisabled, onSubmit }) {
     return(
         <section className="form">
             <div className="form__header">
                 <Logo />
                 <h2 className="form__header-title">{title}</h2>
             </div>
-            <form className="form__base" noValidate>
+            <form className="form__base" onSubmit={onSubmit} noValidate>
                 <div className="form__base-inputs">
                     {children}
                 </div>

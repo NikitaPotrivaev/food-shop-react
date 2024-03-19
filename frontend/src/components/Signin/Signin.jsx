@@ -3,13 +3,20 @@ import { Form } from '../Form/Form'
 import { BackButton } from '../BackButton/Backbutton';
 import { useForm } from '../../hooks/useForm';
 
-export function Signin() {
+export function Signin({ onLogin }) {
+
     const { values, handleChange, errors, isValid } = useForm()
+
+    function handleSubmit(e) {
+        e.preventDefault()
+        onLogin(values["email"], values["password"])
+    }
 
     return(
         <>
             <BackButton />
             <Form
+                onSubmit={handleSubmit}
                 isValid={isValid}
                 isDisabled={!isValid || ''}
                 title='Для оформления вашего заказа необходимо авторизоваться 🥺'

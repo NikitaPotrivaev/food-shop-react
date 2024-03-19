@@ -5,13 +5,13 @@ import { useForm } from '../../hooks/useForm';
 import { BackButton } from '../BackButton/Backbutton';
 import { Logo } from '../Logo/Logo';
 
-export function Data() {
+export function Data({ onUpdateUser }) {
     const currentUser = useContext(CurrentUserContext)
     const [isDataChanged, setDataChanged] = useState(false);
     const { values, setValues, handleChange, errors, isValid } = useForm()
 
     useEffect(() => {
-        values.name === currentUser.name && values.email === currentUser.email && values.phone
+        values.name === currentUser.name && values.email === currentUser.email && values.phone === currentUser.phone
           ? setDataChanged(false)
           : setDataChanged(true);
       }, [values, currentUser.name, currentUser.email, currentUser.phone]);
@@ -24,13 +24,18 @@ export function Data() {
         });
       }, [currentUser.name, currentUser.email, currentUser.phone, setValues]);
 
+    function handleSubmit(e) {
+        e.preventDefault()
+        onUpdateUser(values)
+    }
+
     return(
         <>
             <BackButton/>
             <section className='data'>
                 <Logo />
             <h3 className='data__title'>Мои данные</h3>
-            <form className='data__form'>
+            <form className='data__form' onSubmit={handleSubmit}>
                 <label className='data__input-container'>Имя
                     <input name='name' className='data__input-element' type='text' value={values.name || '' } onChange = { handleChange } minLength="2" maxLength="40" required ></input>
                 </label>

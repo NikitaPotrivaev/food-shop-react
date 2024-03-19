@@ -7,10 +7,11 @@ import { Signup } from '../Signup/Signup';
 import { Data } from '../Data/Data';
 import { CurrentUserContext } from '../../context/CurrentUserContext'
 import { useEffect, useState } from 'react';
-import { useNavigate, Route, Routes } from 'react-router-dom';
+import { useNavigate, Route, Routes, useLocation } from 'react-router-dom';
 import { ImagePopup } from '../ImagePopup/ImagePopup';
 import { EditAvatarPopup } from '../EditAvatarPopup/EditAvatarPopup';
 import { api } from '../utils/Api';
+import { ProtectedRoute } from '../ProtectedRoute/ProtectedRoute';
 
 function App() {
   const [currentUser, setCurrentUser] = useState({})
@@ -18,9 +19,9 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({})
   const [isEditAvatarPopup, setEditAvatarPopup] = useState(false)
   const [isLoggedIn, setIsloggedIn] = useState(false)
-  const [name, setName] = useState('')
 
   const navigate = useNavigate()
+  const location = useLocation()
 
   function closeAllPopups() {
     setEditAvatarPopup(false)
@@ -50,8 +51,7 @@ function App() {
     const token = localStorage.getItem('token')
     if (token) {
       api.checkToken(token)
-      .then((res) => {
-        setName(res.name)
+      .then(() => {
         setIsloggedIn(true)
         navigate(location)
       })
@@ -62,7 +62,6 @@ function App() {
     api.login(password, email)
       .then(res => {
         localStorage.setItem('token', res.token)
-        setName(res.name)
         setIsloggedIn(true)
         navigate('/')
       })
@@ -82,7 +81,7 @@ function App() {
     setIsloggedIn(false)
   }
 
-  function handleupdateUser(user) {
+  function handleUpdateUser(user) {
     api.updateUserInfo(user.name, user.email, user.phone)
     .then(res => {
       setCurrentUser(res)
@@ -96,22 +95,34 @@ function App() {
         <Routes>
           <Route path='/'
             element = { <Main 
-            onCardClick = { handleCardClick }
+              onCardClick = { handleCardClick }
+              isLoggedIn = { isLoggedIn }
           />}
           />
           <Route path='/profile'
-            element = {<Profile 
+          element = { <ProtectedRoute
+          element = { Profile }
+              isLoggedIn = { isLoggedIn }
               onEditAvatar = { handleEditAvatarClick }
+              onLogout = { handleLogout }
           />}
           />
           <Route path='/signup'
-            element = {<Signup />}
+            element = {<Signup
+              onRegister = {handleRegister}
+            />}
           />
           <Route path='/signin'
-            element = {<Signin />}
+            element = {<Signin 
+              onLogin = { handleLogin }
+            />}
           />
           <Route path='/data'
-            element = {<Data/>}
+            element = { <ProtectedRoute
+            element = { Data }
+              isLoggedIn = { isLoggedIn }
+              onUpdateUser = { handleUpdateUser }
+            />}
           />
           <Route path='*'
             element = {<NotFound />}

@@ -4,7 +4,7 @@ import data from '../../images/data.svg'
 import exit from '../../images/exit.svg'
 import { Link } from 'react-router-dom'
 
-export function List() {
+export function List({ onLogout }) {
     return(
         <section className='list'>
             <div className='list__orders'>
@@ -20,8 +20,10 @@ export function List() {
                 </Link>
             </div>
             <div className='list__orders'>
-                <img src={exit} className='list__img'/>
-                <p className='list__text'>Выйти</p>
+                <Link className='list__link' onClick={onLogout} to='/'>
+                    <img src={exit} className='list__img'/>
+                    <p className='list__text'>Выйти</p>
+                </Link>
             </div>
         </section>
     )
