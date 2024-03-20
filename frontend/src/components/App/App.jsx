@@ -1,6 +1,5 @@
 import './App.css'
 import { Main } from '../Main/Main'
-import { Profile } from '../Profile/Profile';
 import { NotFound } from '../NotFound/NotFound';
 import { Signin } from '../Signin/Signin';
 import { Signup } from '../Signup/Signup';
@@ -12,13 +11,17 @@ import { ImagePopup } from '../ImagePopup/ImagePopup';
 import { EditAvatarPopup } from '../EditAvatarPopup/EditAvatarPopup';
 import { api } from '../utils/Api';
 import { ProtectedRoute } from '../ProtectedRoute/ProtectedRoute';
+import { ProfilePopup } from '../ProfilePopup/ProfilePopup';
 
 function App() {
   const [currentUser, setCurrentUser] = useState({})
   const [isImagePopup, setImagePopup] = useState(false)
   const [selectedCard, setSelectedCard] = useState({})
   const [isEditAvatarPopup, setEditAvatarPopup] = useState(false)
+  const [isSigninPopup, setSigninPopup] = useState(false)
+  const [isSignupPopup, setSignupPopup] = useState(false)
   const [isLoggedIn, setIsloggedIn] = useState(false)
+  const [isProfilePopup, setProfilePopup] = useState(false)
 
   const navigate = useNavigate()
   const location = useLocation()
@@ -26,6 +29,21 @@ function App() {
   function closeAllPopups() {
     setEditAvatarPopup(false)
     setImagePopup(false)
+    setSigninPopup(false)
+    setProfilePopup(false)
+    setSignupPopup(false)
+  }
+
+  function handleProfilePopup() {
+    setProfilePopup(true)
+  }
+
+  function handleSigninPopup() {
+    setSigninPopup(true)
+  }
+
+  function handleSignupPopup() {
+    setSignupPopup(true)
   }
 
   function handleEditAvatarClick() {
@@ -71,7 +89,7 @@ function App() {
   function handleRegister(name, email, password, phone) {
     api.register(name, email, password, phone)
       .then(() => {
-      handleLogin(email, password)
+        handleLogin(email, password)
       })
       .catch(err => {console.log(`Ошибка при регистрации пользователя ${err}`)})
   }
@@ -106,25 +124,8 @@ function App() {
             element = { <Main 
               onCardClick = { handleCardClick }
               isLoggedIn = { isLoggedIn }
+              onProfilePopupClick = { handleProfilePopup }
           />}
-          />
-          <Route path='/profile'
-          element = { <ProtectedRoute
-          element = { Profile }
-              isLoggedIn = { isLoggedIn }
-              onEditAvatar = { handleEditAvatarClick }
-              onLogout = { handleLogout }
-          />}
-          />
-          <Route path='/signup'
-            element = {<Signup
-              onRegister = {handleRegister}
-            />}
-          />
-          <Route path='/signin'
-            element = {<Signin 
-              onLogin = { handleLogin }
-            />}
           />
           <Route path='/data'
             element = { <ProtectedRoute
@@ -137,6 +138,25 @@ function App() {
             element = {<NotFound />}
           />
         </Routes>
+        <ProfilePopup
+          isLoggedIn = { isLoggedIn }
+          isOpen = { isProfilePopup }
+          onClose = { closeAllPopups }
+          onSigninPopupClick = { handleSigninPopup }
+          onSignupPopupClick = { handleSignupPopup }
+          onLogout = { handleLogout }
+          onEditAvatar = { handleEditAvatarClick }
+        />
+        <Signup
+          onRegister = { handleRegister }
+          isOpen = { isSignupPopup }
+          onClose = { closeAllPopups }
+        />
+        <Signin 
+          onLogin = { handleLogin }
+          isOpen = { isSigninPopup }
+          onClose = { closeAllPopups }
+        />
         <EditAvatarPopup 
           isOpen = { isEditAvatarPopup }
           onClose = { closeAllPopups }

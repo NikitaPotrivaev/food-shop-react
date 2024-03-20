@@ -6,6 +6,7 @@ body {
 .app {
     color: black;
     display: flex;
+    position: relative;
     flex-direction: column;
     max-width: 1240px;
     margin: auto;

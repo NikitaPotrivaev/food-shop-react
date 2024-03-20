@@ -9,7 +9,7 @@ export function Main(props) {
     return(
         <>
             <main>
-                <Header isLoggedIn = { props.isLoggedIn }/>
+                <Header isLoggedIn = { props.isLoggedIn } onProfilePopupClick = {props.onProfilePopupClick}/>
                 <SearchForm />
                 <ul className="card">
                     {cardInfo.map((card) => (

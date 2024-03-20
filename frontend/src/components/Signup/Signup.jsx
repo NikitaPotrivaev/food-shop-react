@@ -1,8 +1,7 @@
 import { Form } from '../Form/Form';
-import { BackButton } from '../BackButton/Backbutton';
 import { useForm } from '../../hooks/useForm';
 
-export function Signup({ onRegister }) {
+export function Signup({ onRegister, isOpen, onClose }) {
 
     const { values, handleChange, errors, isValid } = useForm()
 
@@ -13,16 +12,14 @@ export function Signup({ onRegister }) {
 
     return(
         <>
-        <BackButton />
         <Form
+            isOpen={isOpen}
+            onClose={onClose}
             onSubmit={handleSubmit}
             isValid={isValid}
             isDisabled={!isValid || ''}
-            title='Добро пожаловать!'
-            text='Зарегистрироваться'
-            linkCaption='Уже зарегистрированы?'
-            linkText='Войти'
-            path='/signin'
+            title='Добро пожаловать! Если вы у нас впервые, нужно зарегистрироваться'
+            text='Регистрация'
         >
             <div className='input'>
                 <p className='input__info'>Имя</p>
@@ -43,7 +40,7 @@ export function Signup({ onRegister }) {
                 <p className='input__info'>Номер Телефона</p>
                 <input name='phone' pattern="^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$" className='input__element' type='tel' autoComplete='new-phone' value={values.phone || '' } onChange = { handleChange } minLength="11" maxLength="12" required />
                     <span className='input__error input__error_active'>{errors.phone || '' }</span>
-            </div>           
+            </div>          
         </Form>
     </>
     )
