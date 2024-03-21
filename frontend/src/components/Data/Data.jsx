@@ -4,8 +4,9 @@ import { useContext, useEffect, useState } from 'react';
 import { useForm } from '../../hooks/useForm';
 import { BackButton } from '../BackButton/Backbutton';
 import { Logo } from '../Logo/Logo';
+import { InfoTooltip } from '../IngoTooltip/InfoTooltip';
 
-export function Data({ onUpdateUser }) {
+export function Data({ onUpdateUser, status, isOpen, onClose }) {
     const currentUser = useContext(CurrentUserContext)
     const [isDataChanged, setDataChanged] = useState(false);
     const { values, setValues, handleChange, errors, isValid } = useForm()
@@ -51,6 +52,13 @@ export function Data({ onUpdateUser }) {
                     <button className= {`data__button ${!isDataChanged || !isValid ? 'data__button-inactive' : ''}`} disabled={ !isValid || !isDataChanged } type='submit'>Сохранить изменения</button>
             </form>
         </section>
+        <InfoTooltip 
+            successfulText = 'Данные успешно обновлены'
+            errorText = 'Имя или Email введены некорректно'
+            isOpen = { isOpen }
+            onClose = { onClose }
+            status = { status }
+        />
     </>
     )
 }

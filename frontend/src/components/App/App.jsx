@@ -22,6 +22,8 @@ function App() {
   const [isSignupPopup, setSignupPopup] = useState(false)
   const [isLoggedIn, setIsloggedIn] = useState(false)
   const [isProfilePopup, setProfilePopup] = useState(false)
+  const [status, setStatus] = useState(false)
+  const [tooltip, setTooltip] = useState(false)
 
   const navigate = useNavigate()
   const location = useLocation()
@@ -32,6 +34,7 @@ function App() {
     setSigninPopup(false)
     setProfilePopup(false)
     setSignupPopup(false)
+    setTooltip(false)
   }
 
   function handleProfilePopup() {
@@ -66,6 +69,11 @@ function App() {
   }, [isLoggedIn])
 
   useEffect(() => {
+    const timer = setTimeout(() => setTooltip(false), 2000)
+    return () => clearTimeout(timer)
+  })
+
+  useEffect(() => {
     const token = localStorage.getItem('token')
     if (token) {
       api.checkToken(token)
@@ -83,7 +91,10 @@ function App() {
         setIsloggedIn(true)
         navigate('/')
       })
-      .catch(err => {console.log(`Ошибка при авторизации пользователя ${err}`)})
+      .catch(err => {console.log(`Ошибка при авторизации пользователя ${err}`)
+        setTooltip(true)
+        setStatus(false)           
+    })  
   }
 
   function handleRegister(name, email, password, phone) {
@@ -91,7 +102,10 @@ function App() {
       .then(() => {
         handleLogin(email, password)
       })
-      .catch(err => {console.log(`Ошибка при регистрации пользователя ${err}`)})
+      .catch(err => {console.log(`Ошибка при регистрации пользователя ${err}`)
+        setTooltip(true)
+        setStatus(false)            
+    })
   }
 
   function handleLogout() {
@@ -103,8 +117,13 @@ function App() {
     api.updateUserInfo(user.name, user.email, user.phone)
     .then(res => {
       setCurrentUser(res)
+      setTooltip(true)
+      setStatus(true)
     })
-    .catch(err => {console.log(`Ошибка при регистрации пользователя ${err}`)})
+    .catch(err => {console.log(`Ошибка при обновлении пользователя ${err}`)
+      setTooltip(true)
+      setStatus(false)            
+    })
   }
 
   function handleUpdateAvatar(url) {
@@ -113,7 +132,10 @@ function App() {
         setCurrentUser(res)
         closeAllPopups()
       })
-      .catch(err => console.log(`Ошибка при редактировании аватара, ${err}`))
+      .catch(err => {console.log(`Ошибка при обновлении автара ${err}`)
+        setTooltip(true)
+        setStatus(false)            
+    })
   }
 
   return (
@@ -132,6 +154,9 @@ function App() {
             element = { Data }
               isLoggedIn = { isLoggedIn }
               onUpdateUser = { handleUpdateUser }
+              status = { status }
+              isOpen = { tooltip }
+              onClose = { closeAllPopups }
             />}
           />
           <Route path='*'

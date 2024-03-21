@@ -1,13 +1,16 @@
 .popup__edit {
-    width: 100%;
-    outline: none;
+    background-color: transparent;
+    margin-top: 20px;
     border: none;
-    padding:0 0 9px 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-}
-
-.popup__edit_margin {
-    margin-top: 33px;
+    outline: none;
+    height: 46px;
+    padding-left: 15px;
+    color: black;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.2;
+    border-radius: 8px;
+    background-color: #e7e7e7;
 }
 
 .popup__error {
