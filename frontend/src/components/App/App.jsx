@@ -12,6 +12,7 @@ import { EditAvatarPopup } from '../EditAvatarPopup/EditAvatarPopup';
 import { api } from '../utils/Api';
 import { ProtectedRoute } from '../ProtectedRoute/ProtectedRoute';
 import { ProfilePopup } from '../ProfilePopup/ProfilePopup';
+import { InfoTooltip } from '../IngoTooltip/InfoTooltip';
 
 function App() {
   const [currentUser, setCurrentUser] = useState({})
@@ -24,6 +25,8 @@ function App() {
   const [isProfilePopup, setProfilePopup] = useState(false)
   const [status, setStatus] = useState(false)
   const [tooltip, setTooltip] = useState(false)
+  const [message, setMessage] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
 
   const navigate = useNavigate()
   const location = useLocation()
@@ -85,27 +88,38 @@ function App() {
   }, [])
 
   function handleLogin(password, email) {
+    setIsLoading(true)
     api.login(password, email)
       .then(res => {
         localStorage.setItem('token', res.token)
         setIsloggedIn(true)
         navigate('/')
+        setTooltip(true)
+        setStatus(true)
+        setMessage('Рады вас приветствовать!')
       })
       .catch(err => {console.log(`Ошибка при авторизации пользователя ${err}`)
         setTooltip(true)
-        setStatus(false)           
-    })  
+        setStatus(false)
+        setMessage('Имя или Email введены неправильно')        
+    })
+    .finally(() => setIsLoading(false))
   }
 
   function handleRegister(name, email, password, phone) {
+    setIsLoading(true)
     api.register(name, email, password, phone)
       .then(() => {
         handleLogin(email, password)
+        setTooltip(true)
+        setStatus(true)
       })
       .catch(err => {console.log(`Ошибка при регистрации пользователя ${err}`)
         setTooltip(true)
-        setStatus(false)            
+        setStatus(false)
+        setMessage('Пользователь уже существует')        
     })
+    .finally(() => setIsLoading(false))
   }
 
   function handleLogout() {
@@ -114,19 +128,24 @@ function App() {
   }
 
   function handleUpdateUser(user) {
+    setIsLoading(true)
     api.updateUserInfo(user.name, user.email, user.phone)
     .then(res => {
       setCurrentUser(res)
       setTooltip(true)
       setStatus(true)
+      setMessage('Данные успешно обновлены')
     })
     .catch(err => {console.log(`Ошибка при обновлении пользователя ${err}`)
       setTooltip(true)
-      setStatus(false)            
+      setStatus(false)
+      setMessage('Пользователь уже существует или связь с интернетом потеряна!')  
     })
+    .finally(() => setIsLoading(false))
   }
 
   function handleUpdateAvatar(url) {
+    setIsLoading(true)
     api.setUserAvatar(url)
       .then((res) => {
         setCurrentUser(res)
@@ -134,8 +153,10 @@ function App() {
       })
       .catch(err => {console.log(`Ошибка при обновлении автара ${err}`)
         setTooltip(true)
-        setStatus(false)            
+        setStatus(false)
+        setMessage('Проверьте связь с интернетом')          
     })
+    .finally(() => setIsLoading(false))
   }
 
   return (
@@ -154,8 +175,6 @@ function App() {
             element = { Data }
               isLoggedIn = { isLoggedIn }
               onUpdateUser = { handleUpdateUser }
-              status = { status }
-              isOpen = { tooltip }
               onClose = { closeAllPopups }
             />}
           />
@@ -176,21 +195,30 @@ function App() {
           onRegister = { handleRegister }
           isOpen = { isSignupPopup }
           onClose = { closeAllPopups }
+          isLoading = {isLoading}
         />
         <Signin 
           onLogin = { handleLogin }
           isOpen = { isSigninPopup }
           onClose = { closeAllPopups }
+          isLoading = {isLoading}
         />
         <EditAvatarPopup 
           isOpen = { isEditAvatarPopup }
           onClose = { closeAllPopups }
           onUpdateAvatar = { handleUpdateAvatar }
+          isLoading = {isLoading}
         />
         <ImagePopup
           isOpen = { isImagePopup }
           onClose = { closeAllPopups }
           card = { selectedCard }
+        />
+        <InfoTooltip 
+          isOpenTooltip = { tooltip }
+          status = { status }
+          message = { message }
+          onClose = { closeAllPopups }
         />
       </div>
     </CurrentUserContext.Provider>

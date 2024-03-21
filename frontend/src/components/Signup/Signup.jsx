@@ -1,9 +1,14 @@
 import { Form } from '../Form/Form';
 import { useForm } from '../../hooks/useForm';
+import { useEffect } from 'react';
 
-export function Signup({ onRegister, isOpen, onClose }) {
+export function Signup({ onRegister, isOpen, onClose, isLoading }) {
 
-    const { values, handleChange, errors, isValid } = useForm()
+    const { values, handleChange, errors, isValid, resetForm } = useForm()
+
+    useEffect(() => {
+        resetForm();
+    }, [resetForm]);
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -19,7 +24,7 @@ export function Signup({ onRegister, isOpen, onClose }) {
             isValid={isValid}
             isDisabled={!isValid || ''}
             title='Добро пожаловать! Если вы у нас впервые, нужно зарегистрироваться'
-            text='Регистрация'
+            text={isLoading ? 'Регистрация...' : 'Регистрация'}
         >
             <div className='input'>
                 <p className='input__info'>Имя</p>

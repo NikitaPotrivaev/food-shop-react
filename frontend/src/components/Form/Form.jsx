@@ -24,6 +24,7 @@ export function Form({ children, title, text, isValid, isDisabled, onSubmit, isO
     }
 
     return(
+        <>
         <div className={`popup ${isOpen ? 'popup_opened' : ''}`} onMouseDown={handleOverlayClose}>
             <div className="popup__container">
                 <button className="popup__close" type="button" onClick={ onClose } aria-label="Закрыть"></button>
@@ -41,5 +42,6 @@ export function Form({ children, title, text, isValid, isDisabled, onSubmit, isO
                 </section>
             </div>
         </div>
+        </>     
     )
 }

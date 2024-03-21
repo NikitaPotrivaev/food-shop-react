@@ -4,12 +4,11 @@ import { useContext, useEffect, useState } from 'react';
 import { useForm } from '../../hooks/useForm';
 import { BackButton } from '../BackButton/Backbutton';
 import { Logo } from '../Logo/Logo';
-import { InfoTooltip } from '../IngoTooltip/InfoTooltip';
 
-export function Data({ onUpdateUser, status, isOpen, onClose }) {
+export function Data({ onUpdateUser }) {
     const currentUser = useContext(CurrentUserContext)
     const [isDataChanged, setDataChanged] = useState(false);
-    const { values, setValues, handleChange, errors, isValid } = useForm()
+    const { values, setValues, handleChange, errors, isValid, resetForm } = useForm()
 
     useEffect(() => {
         values.name === currentUser.name && values.email === currentUser.email && values.phone === currentUser.phone
@@ -18,12 +17,12 @@ export function Data({ onUpdateUser, status, isOpen, onClose }) {
       }, [values, currentUser.name, currentUser.email, currentUser.phone]);
 
     useEffect(() => {
-        setValues({
+        resetForm && setValues({
           name: currentUser.name,
           email: currentUser.email,
           phone: currentUser.phone
         });
-      }, [currentUser.name, currentUser.email, currentUser.phone, setValues]);
+      }, [currentUser.name, currentUser.email, currentUser.phone, setValues, resetForm]);
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -52,13 +51,6 @@ export function Data({ onUpdateUser, status, isOpen, onClose }) {
                     <button className= {`data__button ${!isDataChanged || !isValid ? 'data__button-inactive' : ''}`} disabled={ !isValid || !isDataChanged } type='submit'>Сохранить изменения</button>
             </form>
         </section>
-        <InfoTooltip 
-            successfulText = 'Данные успешно обновлены'
-            errorText = 'Имя или Email введены некорректно'
-            isOpen = { isOpen }
-            onClose = { onClose }
-            status = { status }
-        />
     </>
     )
 }

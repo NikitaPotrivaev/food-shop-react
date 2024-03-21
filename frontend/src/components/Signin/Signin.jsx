@@ -1,10 +1,15 @@
 import './Signin.css'
 import { Form } from '../Form/Form'
 import { useForm } from '../../hooks/useForm';
+import { useEffect } from 'react';
 
-export function Signin({ onLogin, isOpen, onClose }) {
+export function Signin({ onLogin, isOpen, onClose, isLoading }) {
 
-    const { values, handleChange, errors, isValid } = useForm()
+    const { values, handleChange, errors, isValid, resetForm } = useForm()
+
+    useEffect(() => {
+        resetForm();
+    }, [resetForm]);
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -20,7 +25,7 @@ export function Signin({ onLogin, isOpen, onClose }) {
                 isValid={isValid}
                 isDisabled={!isValid || ''}
                 title='Для оформления вашего заказа необходимо авторизоваться 🥺'
-                text='Войти'
+                text={ isLoading ? 'Войти...' : 'Войти' }
             >
             <div className='input'>
                 <p className='input__info'>E-mail</p>

@@ -29,7 +29,7 @@ export function EditAvatarPopup(props) {
         isDisabled = { !isValid || props.isLoading }
         title = 'Обновить аватар'
         name = 'picture'
-        buttonText = 'Сохранить'
+        buttonText = {props.isLoading ? 'Сохранить...' : 'Сохранить'}
     >
         <input name="avatar" className="popup__edit" type="url" value={ values.avatar || '' } onChange={ handleChange } placeholder="Введите ссылку" ref={ref} required/>
             <span id="avatar-error" className="popup__error popup__error_active">{ errors.avatar || "" }</span>
