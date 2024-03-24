@@ -28,6 +28,7 @@
     width: 38px;
     height: 38px;
     transition: 0.2s ease-in;
+    cursor: pointer;
 }
 
 .header__avatar-img:hover {

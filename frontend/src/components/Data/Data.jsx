@@ -5,7 +5,7 @@ import { useForm } from '../../hooks/useForm';
 import { BackButton } from '../BackButton/Backbutton';
 import { Logo } from '../Logo/Logo';
 
-export function Data({ onUpdateUser }) {
+export function Data({ onUpdateUser, isLoading }) {
     const currentUser = useContext(CurrentUserContext)
     const [isDataChanged, setDataChanged] = useState(false);
     const { values, setValues, handleChange, errors, isValid, resetForm } = useForm()
@@ -48,9 +48,9 @@ export function Data({ onUpdateUser }) {
                     <input name='phone' pattern="^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$" className='data__input-element' type='tel' value={values.phone || '' } onChange = { handleChange } minLength="11" maxLength="12" required ></input>
                 </label>
                     <span className='data__input-element-error data__input-element-error_active'>{errors.phone || '' }</span>
-                    <button className= {`data__button ${!isDataChanged || !isValid ? 'data__button-inactive' : ''}`} disabled={ !isValid || !isDataChanged } type='submit'>Сохранить изменения</button>
+                    <button className= {`data__button ${!isDataChanged || !isValid ? 'data__button-inactive' : ''}`} disabled={ !isValid || !isDataChanged } type='submit'>{isLoading ? 'Сохранить изменения...' : 'Сохранить изменения'}</button>
             </form>
-        </section>
-    </>
+            </section>
+        </>
     )
 }

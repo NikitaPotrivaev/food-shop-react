@@ -176,6 +176,7 @@ function App() {
               isLoggedIn = { isLoggedIn }
               onUpdateUser = { handleUpdateUser }
               onClose = { closeAllPopups }
+              isLoading = {isLoading}
             />}
           />
           <Route path='*'
