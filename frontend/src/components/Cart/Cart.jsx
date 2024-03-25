@@ -1,8 +1,30 @@
 import './Cart.css'
 import philadelphia from '../../images/philadelphia.jpg'
+import { useEffect } from 'react';
 
-export function Cart() {
+export function Cart(props) {
+
+    useEffect(() => {
+        if (!props.isOpen) return;
+        
+        function handleESC(e) {
+          if (e.key === "Escape") {
+            props.onClose()
+          }
+        }
+        document.addEventListener("keydown", handleESC);
+    
+        return () => document.removeEventListener("keydown", handleESC);
+      }, [props.isOpen]);
+    
+      const handleOverlayClose = (e) => {
+        if (e.target === e.currentTarget && props.isOpen) {
+          props.onClose();
+        }
+      }
+
     return (
+        <div className={`popup__cart ${props.isOpen ? 'popup__cart_opened' : ''}`} onMouseDown={handleOverlayClose}>
         <div className="cart">
         <div className="cart__container">
             <h5 className="cart__title">Ваш заказ</h5>
@@ -33,6 +55,7 @@ export function Cart() {
                 <button type="submit" className="cart__btn-order">Заказать</button>
             </form>
         </div>
+    </div>
     </div>
     )
 }

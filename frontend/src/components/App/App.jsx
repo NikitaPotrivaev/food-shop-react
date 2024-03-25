@@ -24,6 +24,7 @@ function App() {
   const [isSignupPopup, setSignupPopup] = useState(false)
   const [isLoggedIn, setIsloggedIn] = useState(false)
   const [isProfilePopup, setProfilePopup] = useState(false)
+  const [isCartPopup, setCartPopup] = useState(false)
   const [status, setStatus] = useState(false)
   const [tooltip, setTooltip] = useState(false)
   const [message, setMessage] = useState('')
@@ -39,6 +40,11 @@ function App() {
     setProfilePopup(false)
     setSignupPopup(false)
     setTooltip(false)
+    setCartPopup(false)
+  }
+
+  function handleCartPopup() {
+    setCartPopup(true)
   }
 
   function handleProfilePopup() {
@@ -164,16 +170,12 @@ function App() {
     <CurrentUserContext.Provider value = { currentUser }>
       <div className='app'>
         <Routes>
-          <Route path='/cart'
-            element = { <Cart
-              
-          />}
-          />
           <Route path='/'
             element = { <Main 
               onCardClick = { handleCardClick }
               isLoggedIn = { isLoggedIn }
               onProfilePopupClick = { handleProfilePopup }
+              onCartPopupClick = { handleCartPopup }
           />}
           />
           <Route path='/data'
@@ -225,6 +227,10 @@ function App() {
           isOpenTooltip = { tooltip }
           status = { status }
           message = { message }
+          onClose = { closeAllPopups }
+        />
+        <Cart
+          isOpen = {isCartPopup}
           onClose = { closeAllPopups }
         />
       </div>

@@ -1,5 +1,4 @@
 import './List.css'
-import cart from '../../images/cart.svg'
 import data from '../../images/data.svg'
 import exit from '../../images/exit.svg'
 import reg from '../../images/reg.svg'
@@ -11,12 +10,6 @@ export function List({ onLogout, isLoggedIn, onSigninPopupClick, onSignupPopupCl
         <section className='list'>
             {isLoggedIn ?
             <>
-            <div className='list__orders'>
-                <Link className='list__link'>
-                    <img src={cart} className='list__img'/>
-                    <p className='list__text'>Корзина</p>
-                </Link>
-            </div>
             <div className='list__orders'>
                 <Link className='list__link' to='/data' onClick = {onClose}>
                     <img src={data} className='list__img'/>
