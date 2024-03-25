@@ -2,6 +2,7 @@
     padding: 0;
     width: 92%;
     margin: auto;
+    flex-shrink: 0;
 }
 
 .footer__title {

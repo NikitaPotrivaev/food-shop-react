@@ -2,7 +2,7 @@ export const cardInfo = [
     {
         id: 1,
         link: 'https://glavsushi.ru/wp-content/uploads/2019/09/kalif_tempura_corr.jpg',
-        name: 'Калифония темпура',
+        name: 'Калифорния темпура',
         qty: '8 шт.',
         weight: '240г',
         price: '250 ₽'
@@ -11,7 +11,7 @@ export const cardInfo = [
     {
         id: 2,
         link: 'https://imgproxy.sbermarket.ru/imgproxy/width-auto/czM6Ly9jb250ZW50LWltYWdlcy1wcm9kL3Byb2R1Y3RzLzI4NDM3NjE1L29yaWdpbmFsLzEvMjAyMy0xMS0yM1QxMyUzQTEzJTNBNTIuNjkxNzYwJTJCMDAlM0EwMC8yODQzNzYxNV8xLmpwZw==.jpg',
-        name: 'Калифония хит ролл',
+        name: 'Калифорния хит ролл',
         qty: '6 шт.',
         weight: '180г',
         price: '300 ₽'
@@ -29,7 +29,7 @@ export const cardInfo = [
     {
         id: 4,
         link: 'https://house-pizza.ru/wp-content/uploads/2019/02/KALIFORNIYa-Myaso-kraba-avokado-ogurec-ikra-tobiko-majonez-290r..jpg',
-        name: 'Запеченный ролл "Калифония"',
+        name: 'Запеченный ролл "Калифорния"',
         qty: '8 шт.',
         weight: '182г',
         price: '369 ₽'

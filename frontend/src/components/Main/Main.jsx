@@ -10,12 +10,12 @@ export function Main(props) {
     const [value, setValue] = useState('')
 
     const filterCards = cardInfo.filter(card => {
-        return card.name.toLocaleLowerCase().includes(value.toLocaleLowerCase())
+        return card.name.toLowerCase().includes(value.toLowerCase())
     })
 
     return(
         <>
-            <main>
+            <main className="main">
                 <Header isLoggedIn = { props.isLoggedIn } onProfilePopupClick = {props.onProfilePopupClick}/>
                 <SearchForm setValue={setValue}/>
                 <ul className="card">

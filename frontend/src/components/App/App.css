@@ -6,9 +6,9 @@ body {
 .app {
     color: black;
     display: flex;
+    min-height: 100vh;
     position: relative;
     flex-direction: column;
     max-width: 1240px;
     margin: auto;
-    height: 100vh;
 }
