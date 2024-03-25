@@ -1,6 +1,18 @@
 import './Card.css'
+import { useState } from 'react'
 
 export function Card(props) {
+    const [count, setCount] = useState(1)
+
+    function handleIncrement() {
+        setCount(count + 1)
+    }
+
+    function handleDecrement() {
+        if (parseInt(count) > 1) {
+            setCount(count - 1)
+        }
+    }
 
     function handleClick() {
         props.onCardClick(props.card)
@@ -14,9 +26,9 @@ export function Card(props) {
                 <p className="card__qty">{props.qty}</p>
                 <div className="card__wrapper">
                     <div className="card__items">
-                        <div className="card__items-minus">-</div>
-                        <div className="card__items-current">1</div>
-                        <div className="card__items-plus">+</div>
+                        <div onClick={handleDecrement} className="card__items-minus">-</div>
+                        <div className="card__items-current">{count}</div>
+                        <div onClick={handleIncrement} className="card__items-plus">+</div>
                     </div>
                     <div className="card__info">
                         <p className="card__info-weight">{props.weight}</p>

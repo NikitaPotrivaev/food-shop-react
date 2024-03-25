@@ -13,6 +13,7 @@ import { api } from '../utils/Api';
 import { ProtectedRoute } from '../ProtectedRoute/ProtectedRoute';
 import { ProfilePopup } from '../ProfilePopup/ProfilePopup';
 import { InfoTooltip } from '../IngoTooltip/InfoTooltip';
+import { Cart } from '../Cart/Cart';
 
 function App() {
   const [currentUser, setCurrentUser] = useState({})
@@ -163,6 +164,11 @@ function App() {
     <CurrentUserContext.Provider value = { currentUser }>
       <div className='app'>
         <Routes>
+          <Route path='/cart'
+            element = { <Cart
+              
+          />}
+          />
           <Route path='/'
             element = { <Main 
               onCardClick = { handleCardClick }
@@ -177,7 +183,7 @@ function App() {
               onUpdateUser = { handleUpdateUser }
               onClose = { closeAllPopups }
               isLoading = {isLoading}
-            />}
+          />}
           />
           <Route path='*'
             element = {<NotFound />}
