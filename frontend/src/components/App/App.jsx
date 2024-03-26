@@ -14,6 +14,7 @@ import { ProtectedRoute } from '../ProtectedRoute/ProtectedRoute';
 import { ProfilePopup } from '../ProfilePopup/ProfilePopup';
 import { InfoTooltip } from '../IngoTooltip/InfoTooltip';
 import { Cart } from '../Cart/Cart';
+import { cardInfo } from '../utils/card';
 
 function App() {
   const [currentUser, setCurrentUser] = useState({})
@@ -29,6 +30,7 @@ function App() {
   const [tooltip, setTooltip] = useState(false)
   const [message, setMessage] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const [cart, setCart] = useState(cardInfo)
 
   const navigate = useNavigate()
   const location = useLocation()
@@ -66,6 +68,10 @@ function App() {
   function handleCardClick(card) {
     setImagePopup(true)
     setSelectedCard({ name: card.name, link: card.link })
+  }
+
+  function addToCart(card) {
+    setCart({ orders: [...cart.orders, card] })
   }
 
   useEffect(() => {
@@ -176,6 +182,7 @@ function App() {
               isLoggedIn = { isLoggedIn }
               onProfilePopupClick = { handleProfilePopup }
               onCartPopupClick = { handleCartPopup }
+              onAdd = { addToCart }
           />}
           />
           <Route path='/data'
@@ -232,6 +239,7 @@ function App() {
         <Cart
           isOpen = {isCartPopup}
           onClose = { closeAllPopups }
+          orders = { cart.orders }
         />
       </div>
     </CurrentUserContext.Provider>

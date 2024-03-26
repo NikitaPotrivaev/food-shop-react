@@ -14,6 +14,10 @@ export function Card(props) {
         }
     }
 
+    function handleAddToCart() {
+        props.onAdd(props.card)
+    }
+
     function handleClick() {
         props.onCardClick(props.card)
     }
@@ -35,7 +39,7 @@ export function Card(props) {
                         <p className="card__info-price">{props.price}</p>
                     </div>
                 </div>
-                <button className="card__button-in-cart" type="button">Добавить</button>
+                <button onClick={handleAddToCart} className="card__button-in-cart" type="button">Добавить</button>
             </div>
         </li>        
     )

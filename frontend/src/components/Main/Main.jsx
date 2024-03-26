@@ -9,7 +9,7 @@ import { useState } from "react";
 export function Main(props) {
     const [value, setValue] = useState('')
 
-    const filterCards = cardInfo.filter(card => {
+    const filterCards = cardInfo.items.filter(card => {
         return card.name.toLowerCase().includes(value.toLowerCase())
     })
 
@@ -29,6 +29,7 @@ export function Main(props) {
                             weight = {card.weight}
                             price = {card.price}
                             onCardClick = {props.onCardClick}
+                            onAdd = {props.onAdd}
                         />
                     ))}
                 </ul>

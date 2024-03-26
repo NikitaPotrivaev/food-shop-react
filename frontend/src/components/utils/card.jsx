@@ -1,4 +1,6 @@
-export const cardInfo = [
+export const cardInfo = { 
+    orders: [],
+    items: [
     {
         id: 1,
         link: 'https://glavsushi.ru/wp-content/uploads/2019/09/kalif_tempura_corr.jpg',
@@ -106,4 +108,4 @@ export const cardInfo = [
         weight: '96г',
         price: '249 ₽'
     },
-]
+]}
