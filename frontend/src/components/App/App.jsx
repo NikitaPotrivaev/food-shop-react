@@ -71,7 +71,13 @@ function App() {
   }
 
   function addToCart(card) {
-    setCart({ orders: [...cart.orders, card] })
+    let isInArray = false
+    cart.orders.forEach(el => {
+      if (el.id === card.id)
+        isInArray = true
+    })
+    if (!isInArray)
+      setCart({ orders: [...cart.orders, card] })
   }
 
   useEffect(() => {

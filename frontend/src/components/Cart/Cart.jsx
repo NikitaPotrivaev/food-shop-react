@@ -1,6 +1,6 @@
 import './Cart.css'
 import { useEffect } from 'react';
-import { CartItem } from './CartItem';
+import { CartItem } from '../CartItem.jsx/CartItem';
 import big from '../../images/big-cart.png'
 
 export function Cart(props) {
@@ -62,7 +62,7 @@ export function Cart(props) {
         <div className="cart">
             <div className="cart__empty-container">
                 <div className='cart__empty'>
-                    <h3 className='cart__empty-text'>Ваша корзина пуста!</h3>
+                    <h3 className='cart__empty-text'>В вашей корзине пока пусто</h3>
                     <img src={big} className='cart__big-img' alt='Большая корзина'/>
                 </div>
             </div>
