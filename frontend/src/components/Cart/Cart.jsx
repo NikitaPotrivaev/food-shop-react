@@ -4,6 +4,8 @@ import { CartItem } from '../CartItem.jsx/CartItem';
 import big from '../../images/big-cart.png'
 
 export function Cart(props) {
+    let sum = 0
+    props.orders.forEach(el => sum += Number.parseFloat(el.price))
 
     useEffect(() => {
         if (!props.isOpen) return;
@@ -41,13 +43,14 @@ export function Cart(props) {
                             qty = {item.qty}
                             weight = {item.weight}
                             price = {item.price}
+                            onDelete = {props.onDelete}
                         />
                     ))}
                     </ul>
                 </div>
                 <div className="cart__total">
                     <p><span className="cart__delivery">Доставка:</span> <span className="cart__delivery-free">бесплатно</span> </p>
-                    <p><span className="cart__conclusion">Итого:</span> <span className="cart__total-price">330 ₽</span></p>
+                    <p><span className="cart__conclusion">Итого:</span> <span className="cart__total-price">{sum} ₽</span></p>
                 </div>
             </div>
             <div className="cart__body">

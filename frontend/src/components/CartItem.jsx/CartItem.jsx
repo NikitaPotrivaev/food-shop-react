@@ -1,4 +1,11 @@
+import deleteCart from "../../images/delete.svg"
+
 export function CartItem(props) {
+
+    function handleDeleteClick() {
+        props.onDelete(props.item.id)
+    }
+
     return (
         <li className="cart__info">
             <img src={props.link} className='cart__img'  alt={props.name}/>
@@ -14,9 +21,10 @@ export function CartItem(props) {
                         <div className="cart__items-current">1</div>
                         <div className="cart__items-plus">+</div>
                     </div>
-                        <div className="cart__price">{props.price}</div>
+                        <div className="cart__price">{props.price} ₽</div>
                 </div>
             </div>
+            <img onClick={handleDeleteClick} src={deleteCart} className="cart__delete" alt="Корзина удаления"/>
         </li>
     )
 }

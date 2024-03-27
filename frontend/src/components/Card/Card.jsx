@@ -36,7 +36,7 @@ export function Card(props) {
                     </div>
                     <div className="card__info">
                         <p className="card__info-weight">{props.weight}</p>
-                        <p className="card__info-price">{props.price}</p>
+                        <p className="card__info-price">{props.price} ₽</p>
                     </div>
                 </div>
                 <button onClick={handleAddToCart} className="card__button-in-cart" type="button">Добавить</button>

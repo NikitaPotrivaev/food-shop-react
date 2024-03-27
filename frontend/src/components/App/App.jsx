@@ -80,6 +80,10 @@ function App() {
       setCart({ orders: [...cart.orders, card] })
   }
 
+  function deleteOrder(id) {
+    setCart({orders: cart.orders.filter(i => i.id !== id)})
+  }
+
   useEffect(() => {
     if (isLoggedIn) {
       Promise.all([ api.getUserInfo() ])
@@ -246,6 +250,7 @@ function App() {
           isOpen = {isCartPopup}
           onClose = { closeAllPopups }
           orders = { cart.orders }
+          onDelete = { deleteOrder }
         />
       </div>
     </CurrentUserContext.Provider>

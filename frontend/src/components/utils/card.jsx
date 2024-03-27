@@ -7,7 +7,7 @@ export const cardInfo = {
         name: 'Калифорния темпура',
         qty: '8 шт.',
         weight: '240г',
-        price: '250 ₽'
+        price: '250'
     },
 
     {
@@ -16,7 +16,7 @@ export const cardInfo = {
         name: 'Калифорния хит ролл',
         qty: '6 шт.',
         weight: '180г',
-        price: '300 ₽'
+        price: '300'
     },
 
     {
@@ -25,7 +25,7 @@ export const cardInfo = {
         name: 'Филадельфия',
         qty: '6 шт.',
         weight: '230г',
-        price: '320 ₽'
+        price: '320'
     },
 
     {
@@ -34,7 +34,7 @@ export const cardInfo = {
         name: 'Запеченный ролл "Калифорния"',
         qty: '8 шт.',
         weight: '182г',
-        price: '369 ₽'
+        price: '369'
     },
 
     {
@@ -43,7 +43,7 @@ export const cardInfo = {
         name: 'Креветка темпура ролл',
         qty: '6 шт.',
         weight: '205г',
-        price: '389 ₽'
+        price: '389'
     },
 
     {
@@ -52,7 +52,7 @@ export const cardInfo = {
         name: 'Цезарь ролл',
         qty: '6 шт.',
         weight: '168г',
-        price: '249 ₽'
+        price: '249'
     },
 
     {
@@ -61,7 +61,7 @@ export const cardInfo = {
         name: 'Сальмон ролл',
         qty: '6 шт',
         weight: '175г',
-        price: '369 ₽'
+        price: '369'
     },
 
     {
@@ -70,7 +70,7 @@ export const cardInfo = {
         name: 'Сливочный темпура ролл',
         qty: '8 шт',
         weight: '205г',
-        price: '399 ₽'
+        price: '399'
     },
 
     {
@@ -79,7 +79,7 @@ export const cardInfo = {
         name: 'Бекон темпура ролл',
         qty: '8 шт',
         weight: '210г',
-        price: '349 ₽'
+        price: '349'
     },
 
     {
@@ -88,7 +88,7 @@ export const cardInfo = {
         name: 'Калифорния с лососем',
         qty: '8 шт',
         weight: '200г',
-        price: '600 ₽'
+        price: '600'
     },
 
     {
@@ -97,7 +97,7 @@ export const cardInfo = {
         name: 'Спайси ролл с лососем',
         qty: '6 шт',
         weight: '110г',
-        price: '340 ₽'
+        price: '340'
     },
 
     {
@@ -106,6 +106,6 @@ export const cardInfo = {
         name: 'Спайси ролл с креветкой',
         qty: '6 шт',
         weight: '96г',
-        price: '249 ₽'
+        price: '249'
     },
 ]}

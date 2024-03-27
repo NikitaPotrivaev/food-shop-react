@@ -21,7 +21,7 @@
 .cart {
     display: flex;
     flex-direction: column;
-    width: 328px;
+    width: 348px;
     background-color: #ffff;
     border: 1px solid rgba(0, 0, 0, .125);
     border-radius: 0.25rem;
@@ -60,6 +60,7 @@
 .cart__info {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 
 .cart__list {
@@ -260,4 +261,16 @@
     margin: auto;
     width: 80px;
     height: 80px;
+}
+
+.cart__delete {
+    height: 28px;
+    width: 28px;
+    margin-top: 11px;
+    cursor: pointer;
+    transition: all .2s linear;
+}
+
+.cart__delete:hover {
+    opacity: .7;
 }
