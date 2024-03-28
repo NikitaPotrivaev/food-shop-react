@@ -193,6 +193,7 @@ function App() {
               onProfilePopupClick = { handleProfilePopup }
               onCartPopupClick = { handleCartPopup }
               onAdd = { addToCart }
+              orders = { cart.orders }
           />}
           />
           <Route path='/data'

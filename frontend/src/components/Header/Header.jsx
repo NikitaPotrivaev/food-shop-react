@@ -1,10 +1,10 @@
 import './Header.css'
 import logo from '../../images/logo.svg';
-import cart from '../../images/cart.svg';
 import { useContext } from 'react';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
 
-export function Header({ isLoggedIn, onProfilePopupClick, onCartPopupClick }) {
+export function Header({ isLoggedIn, onProfilePopupClick, onCartPopupClick, orders }) {
+    let counter = orders.length
 
     const currentUser = useContext(CurrentUserContext)
 
@@ -12,7 +12,9 @@ export function Header({ isLoggedIn, onProfilePopupClick, onCartPopupClick }) {
         <header className='header'>
             <img src={logo} alt="Суши" className='header__logo'/>
             <div className='header__info'>
-                <img onClick={onCartPopupClick} src={cart} className='header__img'/>
+                <button onClick={onCartPopupClick} className='header__img'>
+                    <span className={counter > 0 ? 'header__counter-visible' : 'header__counter'}>{counter}</span>
+                </button>
                 <p className='header__name'>{ isLoggedIn ? currentUser.name : '' }</p>
                 {isLoggedIn ? 
                         <img onClick={onProfilePopupClick} src={currentUser.avatar} className='header__avatar-img'/>

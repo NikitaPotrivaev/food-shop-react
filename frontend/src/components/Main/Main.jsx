@@ -16,7 +16,7 @@ export function Main(props) {
     return(
         <>
             <main className="main">
-                <Header isLoggedIn = { props.isLoggedIn } onProfilePopupClick = {props.onProfilePopupClick} onCartPopupClick = {props.onCartPopupClick}/>
+                <Header orders = { props.orders } isLoggedIn = { props.isLoggedIn } onProfilePopupClick = {props.onProfilePopupClick} onCartPopupClick = {props.onCartPopupClick}/>
                 <SearchForm setValue={setValue}/>
                 <ul className="card">
                     {filterCards.map((card) => (
