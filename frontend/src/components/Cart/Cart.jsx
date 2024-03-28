@@ -65,7 +65,7 @@ export function Cart(props) {
         <div className="cart">
             <div className="cart__empty-container">
                 <div className='cart__empty'>
-                    <h3 className='cart__empty-text'>В вашей корзине пока пусто</h3>
+                    <h3 className='cart__empty-text'>В вашей корзине пока пусто!</h3>
                     <img src={big} className='cart__big-img' alt='Большая корзина'/>
                 </div>
             </div>

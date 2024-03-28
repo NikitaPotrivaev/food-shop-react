@@ -1,13 +1,22 @@
-import deleteCart from "../../images/delete.svg"
+import { useState } from "react"
 
 export function CartItem(props) {
+    const [isHovered, setIsHovered] = useState(false)
+
+    function handleMouseEnter() {
+        setIsHovered(true)
+    }
+
+    function handleMouseLeave() {
+        setIsHovered(false)
+    }
 
     function handleDeleteClick() {
         props.onDelete(props.item.id)
     }
 
     return (
-        <li className="cart__info">
+        <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="cart__info">
             <img src={props.link} className='cart__img'  alt={props.name}/>
             <div className='cart__item'>
                 <div className="cart-item__title">{props.name}</div>
@@ -24,7 +33,7 @@ export function CartItem(props) {
                         <div className="cart__price">{props.price} ₽</div>
                 </div>
             </div>
-            <img onClick={handleDeleteClick} src={deleteCart} className="cart__delete" alt="Корзина удаления"/>
+            <button onClick={handleDeleteClick} className={isHovered ? "cart__delete-visible" : "cart__delete"}/>
         </li>
     )
 }
