@@ -21,8 +21,8 @@ export function CartItem(props) {
             <div className='cart__item'>
                 <div className="cart-item__title">{props.name}</div>
                 <div className="cart-item__text">
-                    <p className="cart-item__qty">{props.qty}</p>
-                    <p className="cart-item__weight">/{props.weight}</p>
+                    <p className="cart-item__qty">{props.qty} шт.</p>
+                    <p className="cart-item__weight">/{props.weight}г</p>
                 </div>
                 <div className='cart__info-container'>
                     <div className="cart__counter-wrapper">

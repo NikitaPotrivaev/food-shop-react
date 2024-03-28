@@ -30,6 +30,9 @@ export function Main(props) {
                             price = {card.price}
                             onCardClick = {props.onCardClick}
                             onAdd = {props.onAdd}
+                            priceInitial = {card.priceInitial}
+                            weightInitial = {card.weightInitial}
+                            qtyInitial = {card.qtyInitial}
                         />
                     ))}
                 </ul>

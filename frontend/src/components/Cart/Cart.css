@@ -267,6 +267,8 @@
 }
 
 .cart__empty-text {
+    margin: auto;
+    width: 80%;
     font-size: 25px;
     font-weight: 500;
     line-height: 1.2;
