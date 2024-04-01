@@ -5,10 +5,8 @@
 }
 
 .card {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     padding: 0;
     width: 92%;
     gap: 30px;

@@ -2,10 +2,13 @@ import './Cart.css'
 import { useEffect } from 'react';
 import { CartItem } from '../CartItem.jsx/CartItem';
 import big from '../../images/big-cart.png'
+import { useForm } from '../../hooks/useForm';
 
 export function Cart(props) {
     let sum = 0
     props.orders.forEach(el => sum += Number.parseFloat(el.price))
+
+    const { values, handleChange, errors, isValid } = useForm()
 
     useEffect(() => {
         if (!props.isOpen) return;
@@ -43,6 +46,9 @@ export function Cart(props) {
                             qty = {item.qty}
                             weight = {item.weight}
                             price = {item.price}
+                            priceInitial = {item.priceInitial}
+                            weightInitial = {item.weightInitial}
+                            qtyInitial = {item.qtyInitial}
                             onDelete = {props.onDelete}
                         />
                     ))}
@@ -56,8 +62,9 @@ export function Cart(props) {
             <div className="cart__body">
                 <h5 className="cart__offer">Оформить заказ</h5>
                 <form className="cart__form">
-                    <input type="text" className="cart__form-control" placeholder="Ваш адрес"></input>
-                    <button type="submit" className="cart__btn-order">Заказать</button>
+                    <input name='address' type="text" pattern='/^[1-9][0-9]*([a-z]|[а-я]|(\/[1-9][0-9]*))?$/i' className="cart__form-control" value={ values.address || '' } onChange={ handleChange } placeholder="Ваш адрес" required></input>
+                        <span id="address-error" className="popup__error popup__error_active">{ errors.address || "" }</span>
+                    <button disabled={!isValid} type="submit" className={!isValid ? 'cart__btn-order-invisible' : 'cart__btn-order'}>Заказать</button>
                 </form>
             </div>
         </div>

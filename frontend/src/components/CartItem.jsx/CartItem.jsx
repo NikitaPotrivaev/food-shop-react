@@ -2,6 +2,29 @@ import { useState } from "react"
 
 export function CartItem(props) {
     const [isHovered, setIsHovered] = useState(false)
+    const [count, setCount] = useState(1)
+    let [price, setPrice] = useState(props.price)
+    let [weight, setWeight] = useState(props.weight)
+    let [qty, setQty] = useState(props.qty)
+    let [priceInitial] = useState(props.priceInitial)
+    let [weightInitial] = useState(props.weightInitial)
+    let [qtyInitial] = useState(props.qtyInitial)
+
+    function handleIncrement() {
+        setCount(count + 1)
+        setPrice((+price) + (+priceInitial))
+        setWeight((+weight) + (+weightInitial))
+        setQty((+qty) + (+qtyInitial))
+    }
+  
+    function handleDecrement() {
+        if (parseInt(count) > 1) {
+            setCount(count - 1)
+            setPrice(price - priceInitial)
+            setWeight(weight - weightInitial)
+            setQty(qty - qtyInitial)
+        }
+    }
 
     function handleMouseEnter() {
         setIsHovered(true)
@@ -21,16 +44,16 @@ export function CartItem(props) {
             <div className='cart__item'>
                 <div className="cart-item__title">{props.name}</div>
                 <div className="cart-item__text">
-                    <p className="cart-item__qty">{props.qty} шт.</p>
-                    <p className="cart-item__weight">/{props.weight}г</p>
+                    <p className="cart-item__qty">{qty} шт.</p>
+                    <p className="cart-item__weight">/{weight}г</p>
                 </div>
                 <div className='cart__info-container'>
                     <div className="cart__counter-wrapper">
-                        <div className="cart__items-minus">-</div>
-                        <div className="cart__items-current">1</div>
-                        <div className="cart__items-plus">+</div>
+                        <div onClick={handleDecrement} className="cart__items-minus">-</div>
+                        <div className="cart__items-current">{count}</div>
+                        <div onClick={handleIncrement} className="cart__items-plus">+</div>
                     </div>
-                        <div className="cart__price">{props.price} ₽</div>
+                        <div className="cart__price">{price} ₽</div>
                 </div>
             </div>
             <button onClick={handleDeleteClick} className={isHovered ? "cart__delete-visible" : "cart__delete"}/>
