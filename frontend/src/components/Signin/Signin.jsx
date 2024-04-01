@@ -24,7 +24,7 @@ export function Signin({ onLogin, isOpen, onClose, isLoading }) {
                 onSubmit={handleSubmit}
                 isValid={isValid}
                 isDisabled={!isValid || ''}
-                title='Для оформления вашего заказа необходимо авторизоваться 🥺'
+                title='Здравствуйте, для дальнейшего оформления заказа необходимо авторизоваться!'
                 text={ isLoading ? 'Войти...' : 'Войти' }
             >
             <div className='input'>

@@ -10,6 +10,10 @@ export function Cart(props) {
 
     const { values, handleChange, errors, isValid } = useForm()
 
+    function onSubmit(e) {
+        e.preventDefault()
+    }
+
     useEffect(() => {
         if (!props.isOpen) return;
         
@@ -61,11 +65,19 @@ export function Cart(props) {
             </div>
             <div className="cart__body">
                 <h5 className="cart__offer">Оформить заказ</h5>
+                {props.isLoggedIn ?
                 <form className="cart__form">
-                    <input name='address' type="text" pattern='/^[1-9][0-9]*([a-z]|[а-я]|(\/[1-9][0-9]*))?$/i' className="cart__form-control" value={ values.address || '' } onChange={ handleChange } placeholder="Ваш адрес" required></input>
+                    <input name='address' pattern='/^[1-9][0-9]*([a-z]|[а-я]|(\/[1-9][0-9]*))?$/i' type="text"  className="cart__form-control" value={ values.address || '' } onChange={ handleChange } placeholder="Ваш адрес" required></input>
                         <span id="address-error" className="popup__error popup__error_active">{ errors.address || "" }</span>
                     <button disabled={!isValid} type="submit" className={!isValid ? 'cart__btn-order-invisible' : 'cart__btn-order'}>Заказать</button>
                 </form>
+                :
+                <form className="cart__form" onSubmit={onSubmit}>
+                    <input name='address' type="text" pattern='/^[1-9][0-9]*([a-z]|[а-я]|(\/[1-9][0-9]*))?$/i'  className="cart__form-control" value={ values.address || '' } onChange={ handleChange } placeholder="Ваш адрес" required></input>
+                        <span id="address-error" className="popup__error popup__error_active">{ errors.address || "" }</span>
+                    <button onClick={props.onSigninPopupClick} disabled={!isValid} type="submit" className={!isValid ? 'cart__btn-order-invisible' : 'cart__btn-order'}>Заказать</button>
+                </form>                                 
+                }
             </div>
         </div>
         :

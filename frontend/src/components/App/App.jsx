@@ -222,19 +222,19 @@ function App() {
           onRegister = { handleRegister }
           isOpen = { isSignupPopup }
           onClose = { closeAllPopups }
-          isLoading = {isLoading}
+          isLoading = { isLoading }
         />
         <Signin 
           onLogin = { handleLogin }
           isOpen = { isSigninPopup }
           onClose = { closeAllPopups }
-          isLoading = {isLoading}
+          isLoading = { isLoading }
         />
         <EditAvatarPopup 
           isOpen = { isEditAvatarPopup }
           onClose = { closeAllPopups }
           onUpdateAvatar = { handleUpdateAvatar }
-          isLoading = {isLoading}
+          isLoading = { isLoading }
         />
         <ImagePopup
           isOpen = { isImagePopup }
@@ -252,6 +252,8 @@ function App() {
           onClose = { closeAllPopups }
           orders = { cart.orders }
           onDelete = { deleteOrder }
+          onSigninPopupClick = { handleSigninPopup }
+          isLoggedIn = { isLoggedIn }
         />
       </div>
     </CurrentUserContext.Provider>
