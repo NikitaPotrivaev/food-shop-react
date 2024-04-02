@@ -5,8 +5,6 @@ import big from '../../images/big-cart.png'
 import { useForm } from '../../hooks/useForm';
 
 export function Cart(props) {
-    let sum = 0
-    props.orders.forEach(el => sum += Number.parseFloat(el.price))
 
     const { values, handleChange, errors, isValid } = useForm()
 
@@ -50,17 +48,17 @@ export function Cart(props) {
                             qty = {item.qty}
                             weight = {item.weight}
                             price = {item.price}
-                            priceInitial = {item.priceInitial}
-                            weightInitial = {item.weightInitial}
-                            qtyInitial = {item.qtyInitial}
+                            count = {item.count}
                             onDelete = {props.onDelete}
+                            increase = {props.increase}
+                            decrease = {props.decrease}
                         />
                     ))}
                     </ul>
                 </div>
                 <div className="cart__total">
                     <p><span className="cart__delivery">Доставка:</span> <span className="cart__delivery-free">бесплатно</span> </p>
-                    <p><span className="cart__conclusion">Итого:</span> <span className="cart__total-price">{sum} ₽</span></p>
+                    <p><span className="cart__conclusion">Итого:</span> <span className="cart__total-price">{props.total.price} ₽</span></p>
                 </div>
             </div>
             <div className="cart__body">

@@ -3,8 +3,7 @@ import logo from '../../images/logo.svg';
 import { useContext } from 'react';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
 
-export function Header({ isLoggedIn, onProfilePopupClick, onCartPopupClick, orders }) {
-    let counter = orders.length
+export function Header({ isLoggedIn, onProfilePopupClick, onCartPopupClick, total }) {
 
     const currentUser = useContext(CurrentUserContext)
 
@@ -13,7 +12,7 @@ export function Header({ isLoggedIn, onProfilePopupClick, onCartPopupClick, orde
             <img src={logo} alt="Суши" className='header__logo'/>
             <div className='header__info'>
                 <button onClick={onCartPopupClick} className='header__img'>
-                    <span className={counter > 0 ? 'header__counter-visible' : 'header__counter'}>{counter}</span>
+                    <span className={total.count > 0 ? 'header__counter-visible' : 'header__counter'}>{total.count}</span>
                 </button>
                 <p className='header__name'>{ isLoggedIn ? currentUser.name : '' }</p>
                 {isLoggedIn ? 

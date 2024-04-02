@@ -31,9 +31,50 @@ function App() {
   const [message, setMessage] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [cart, setCart] = useState(cardInfo)
+  const [total, setTotal] = useState({
+    price: cart.orders.reduce((sum, item) => { return sum + item.price }, 0),
+    count: cart.orders.reduce((sum, item) => { return sum + item.count }, 0)
+  })
 
   const navigate = useNavigate()
   const location = useLocation()
+
+  useEffect(() => {
+    setTotal({
+      price: cart.orders.reduce((sum, item) => { return sum + item.price }, 0),
+      count: cart.orders.reduce((sum, item) => { return sum + item.count }, 0)
+    })
+  }, [cart])
+ 
+  function handleIncrease(id) {
+    setCart({orders: cart.orders.map(item => {
+      if (item.id === id) {
+        return {
+          ...item,
+          count: item.count + 1,
+          price: item.price + item.priceInitial,
+          weight: item.weight + item.weightInitial,
+          qty: item.qty + item.qtyInitial
+        }
+      }
+      return item
+    })})
+  }
+
+  function handleDecrease(id) {
+    setCart({orders: cart.orders.map(item => {
+      if (item.id === id) {
+        return {
+          ...item,
+          count: item.count - 1 > 1 ? item.count - 1 : 1,
+          price: Math.max(item.price - item.priceInitial, item.priceInitial),
+          weight: Math.max(item.weight - item.weightInitial, item.weightInitial),
+          qty: Math.max(item.qty - item.qtyInitial, item.qtyInitial)
+        }
+      }
+      return item
+    })})
+  }
 
   function closeAllPopups() {
     setEditAvatarPopup(false)
@@ -193,7 +234,7 @@ function App() {
               onProfilePopupClick = { handleProfilePopup }
               onCartPopupClick = { handleCartPopup }
               onAdd = { addToCart }
-              orders = { cart.orders }
+              total ={ total }
           />}
           />
           <Route path='/data'
@@ -254,6 +295,9 @@ function App() {
           onDelete = { deleteOrder }
           onSigninPopupClick = { handleSigninPopup }
           isLoggedIn = { isLoggedIn }
+          increase = { handleIncrease }
+          decrease = { handleDecrease }
+          total = { total }
         />
       </div>
     </CurrentUserContext.Provider>

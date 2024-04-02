@@ -16,7 +16,7 @@ export function Main(props) {
     return(
         <>
             <main className="main">
-                <Header orders = { props.orders } isLoggedIn = { props.isLoggedIn } onProfilePopupClick = {props.onProfilePopupClick} onCartPopupClick = {props.onCartPopupClick}/>
+                <Header total = { props.total } isLoggedIn = { props.isLoggedIn } onProfilePopupClick = {props.onProfilePopupClick} onCartPopupClick = {props.onCartPopupClick}/>
                 <SearchForm setValue={setValue}/>
                 <ul className="card">
                     {filterCards.map((card) => (
@@ -28,11 +28,10 @@ export function Main(props) {
                             qty = {card.qty}
                             weight = {card.weight}
                             price = {card.price}
+                            count = {card.count}
+                            priceInitial = {card.priceInitial}
                             onCardClick = {props.onCardClick}
                             onAdd = {props.onAdd}
-                            priceInitial = {card.priceInitial}
-                            weightInitial = {card.weightInitial}
-                            qtyInitial = {card.qtyInitial}
                         />
                     ))}
                 </ul>
