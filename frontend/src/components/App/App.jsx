@@ -31,6 +31,7 @@ function App() {
   const [message, setMessage] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [cart, setCart] = useState(cardInfo)
+  const [card, setCard] = useState(cardInfo)
   const [total, setTotal] = useState({
     price: cart.orders.reduce((sum, item) => { return sum + item.price }, 0),
     count: cart.orders.reduce((sum, item) => { return sum + item.count }, 0)
@@ -45,6 +46,36 @@ function App() {
       count: cart.orders.reduce((sum, item) => { return sum + item.count }, 0)
     })
   }, [cart])
+
+  function handleIncreaseCard(id) {
+    setCard({items: card.items.map(item => {
+      if (item.id === id) {
+        return {
+          ...item,
+          count: item.count + 1,
+          price: item.price + item.priceInitial,
+          weight: item.weight + item.weightInitial,
+          qty: item.qty + item.qtyInitial
+        };
+      }
+      return item;
+    })})
+  }
+
+  function handleDecreaseCard(id) {
+    setCard({items: card.items.map(card => {
+      if (card.id === id) {
+        return {
+          ...card,
+          count: card.count - 1 > 1 ? card.count - 1 : 1,
+          price: Math.max(card.price - card.priceInitial, card.priceInitial),
+          weight: Math.max(card.weight - card.weightInitial, card.weightInitial),
+          qty: Math.max(card.qty - card.qtyInitial, card.qtyInitial)
+        }
+      }
+      return card
+    })})
+  }
  
   function handleIncrease(id) {
     setCart({orders: cart.orders.map(item => {
@@ -112,13 +143,25 @@ function App() {
   }
 
   function addToCart(card) {
-    let isInArray = false
-    cart.orders.forEach(el => {
-      if (el.id === card.id)
-        isInArray = true
-    })
-    if (!isInArray)
-      setCart({ orders: [...cart.orders, card] })
+    const cardIndex = cart.orders.findIndex(item => item.id === card.id);
+    if (cardIndex !== -1) {
+      setCart({
+        orders: cart.orders.map((item, index) => {
+          if (index === cardIndex) {
+            return {
+              ...item,
+              count: item.count + card.count,
+              price: item.price + card.price,
+              weight: item.weight + card.weight,
+              qty: item.qty + card.qty
+            }
+          }
+          return item;
+        })
+      })
+    } else {
+      setCart({ orders: [...cart.orders, card] });
+    }
   }
 
   function deleteOrder(id) {
@@ -235,6 +278,9 @@ function App() {
               onCartPopupClick = { handleCartPopup }
               onAdd = { addToCart }
               total ={ total }
+              increase = { handleIncreaseCard }
+              decrease = { handleDecreaseCard }
+              items = { card.items }
           />}
           />
           <Route path='/data'

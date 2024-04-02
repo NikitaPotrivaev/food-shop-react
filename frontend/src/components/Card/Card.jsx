@@ -18,9 +18,9 @@ export function Card(props) {
                 <p className="card__qty">{props.qty} шт.</p>
                 <div className="card__wrapper">
                     <div className="card__items">
-                        <div className="card__items-minus">-</div>
+                        <div onClick={() => {props.decrease(props.card.id)}} className="card__items-minus">-</div>
                         <div className="card__items-current">{props.count}</div>
-                        <div className="card__items-plus">+</div>
+                        <div  onClick={() => {props.increase(props.card.id)}} className="card__items-plus">+</div>
                     </div>
                     <div className="card__info">
                         <p className="card__info-weight">{props.weight}г</p>

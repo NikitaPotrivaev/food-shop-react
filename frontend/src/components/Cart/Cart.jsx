@@ -57,21 +57,22 @@ export function Cart(props) {
                     </ul>
                 </div>
                 <div className="cart__total">
-                    <p><span className="cart__delivery">Доставка:</span> <span className="cart__delivery-free">бесплатно</span> </p>
-                    <p><span className="cart__conclusion">Итого:</span> <span className="cart__total-price">{props.total.price} ₽</span></p>
+                    <p className='cart__delivery-text'><span className="cart__delivery">Доставка:</span> <span className="cart__delivery-free">{props.total.price >= 400 ? 'бесплатно' : '400 ₽'}</span></p>
+                        <span className={props.total.price >= 400 ? 'cart__delivery-info' : 'cart__delivery-info-visible'}>Бесплатно при заказе от 600 ₽</span>
+                    <p className='cart__conclusion-info'><span className="cart__conclusion">Итого:</span> <span className="cart__total-price">{props.total.price} ₽</span></p>
                 </div>
             </div>
             <div className="cart__body">
                 <h5 className="cart__offer">Оформить заказ</h5>
                 {props.isLoggedIn ?
                 <form className="cart__form">
-                    <input name='address' pattern='/^[1-9][0-9]*([a-z]|[а-я]|(\/[1-9][0-9]*))?$/i' type="text"  className="cart__form-control" value={ values.address || '' } onChange={ handleChange } placeholder="Ваш адрес" required></input>
+                    <input name='address' pattern='/^[А-Яа-я0-9\s\.,-]+$/' type="text"  className="cart__form-control" value={ values.address || '' } onChange={ handleChange } placeholder="Ваш адрес" required minLength="15" maxLength="40"></input>
                         <span id="address-error" className="popup__error popup__error_active">{ errors.address || "" }</span>
                     <button disabled={!isValid} type="submit" className={!isValid ? 'cart__btn-order-invisible' : 'cart__btn-order'}>Заказать</button>
                 </form>
                 :
                 <form className="cart__form" onSubmit={onSubmit}>
-                    <input name='address' type="text" pattern='/^[1-9][0-9]*([a-z]|[а-я]|(\/[1-9][0-9]*))?$/i'  className="cart__form-control" value={ values.address || '' } onChange={ handleChange } placeholder="Ваш адрес" required></input>
+                    <input name='address' type="text" pattern='/^[А-Яа-я0-9\s\.,-]+$/'  className="cart__form-control" value={ values.address || '' } onChange={ handleChange } placeholder="Ваш адрес" required minLength="15" maxLength="40"></input>
                         <span id="address-error" className="popup__error popup__error_active">{ errors.address || "" }</span>
                     <button onClick={props.onSigninPopupClick} disabled={!isValid} type="submit" className={!isValid ? 'cart__btn-order-invisible' : 'cart__btn-order'}>Заказать</button>
                 </form>                                 

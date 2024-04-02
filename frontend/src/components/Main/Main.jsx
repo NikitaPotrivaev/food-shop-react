@@ -2,14 +2,13 @@ import "./Main.css"
 import { Header } from "../Header/Header";
 import { Card } from "../Card/Card";
 import { SearchForm } from "../SearchForm/SearchForm"
-import { cardInfo } from "../utils/card";
 import { Footer } from '../Footer/Footer';
 import { useState } from "react";
 
 export function Main(props) {
     const [value, setValue] = useState('')
 
-    const filterCards = cardInfo.items.filter(card => {
+    const filterCards = props.items.filter(card => {
         return card.name.toLowerCase().includes(value.toLowerCase())
     })
 
@@ -32,6 +31,8 @@ export function Main(props) {
                             priceInitial = {card.priceInitial}
                             onCardClick = {props.onCardClick}
                             onAdd = {props.onAdd}
+                            increase = {props.increase}
+                            decrease = {props.decrease}
                         />
                     ))}
                 </ul>

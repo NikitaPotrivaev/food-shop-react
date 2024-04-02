@@ -21,7 +21,7 @@
 .cart {
     display: flex;
     flex-direction: column;
-    max-width: 380px;
+    max-width: 400px;
     background-color: #ffff;
     border: 1px solid rgba(0, 0, 0, .125);
     border-radius: 0.25rem;
@@ -191,8 +191,30 @@
     font-weight: 500;
 }
 
+.cart__delivery-text {
+    margin-bottom: 0;
+}
+
 .cart__delivery-free {
     color: #0EA107;
+}
+
+.cart__delivery-info {
+    visibility: hidden;
+    font-size: small;
+    color: rgb(116, 113, 111);
+    margin-bottom: 6.8px;
+}
+
+.cart__delivery-info-visible {
+    visibility: visible;
+    font-size: small;
+    color: rgb(116, 113, 111);
+    margin-bottom: 6.8px;
+}
+
+.cart__conclusion-info {
+    margin-bottom: 0;
 }
 
 .cart__total-price {
