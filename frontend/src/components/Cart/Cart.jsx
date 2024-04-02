@@ -57,8 +57,8 @@ export function Cart(props) {
                     </ul>
                 </div>
                 <div className="cart__total">
-                    <p className='cart__delivery-text'><span className="cart__delivery">Доставка:</span> <span className="cart__delivery-free">{props.total.price >= 400 ? 'бесплатно' : '400 ₽'}</span></p>
-                        <span className={props.total.price >= 400 ? 'cart__delivery-info' : 'cart__delivery-info-visible'}>Бесплатно при заказе от 600 ₽</span>
+                    <p className='cart__delivery-text'><span className="cart__delivery">Доставка:</span> <span className="cart__delivery-free">{props.total.price >= 600 ? 'бесплатно' : '400 ₽'}</span></p>
+                        <span className={props.total.price >= 600 ? 'cart__delivery-info' : 'cart__delivery-info-visible'}>Бесплатно при заказе от 600 ₽</span>
                     <p className='cart__conclusion-info'><span className="cart__conclusion">Итого:</span> <span className="cart__total-price">{props.total.price} ₽</span></p>
                 </div>
             </div>
